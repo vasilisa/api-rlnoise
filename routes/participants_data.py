@@ -59,7 +59,7 @@ def create_participant(participant_id, block_id, prolific_id):
 
 def get_participant_score(participant_id,game_id):
 
-    query      = ParticipantsData.query.filter_by(prolific_id=prolific_id) 
+    query      = ParticipantsData.query.filter_by(participant_id=participant_id) 
 
     if query != None:
         print('Exists')
