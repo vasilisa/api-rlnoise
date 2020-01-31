@@ -13,6 +13,7 @@ class ParticipantsQuestionData(BaseObject, Model):
     id = Column(Integer, primary_key=True)
 
     participant_id  = Column(BigInteger, nullable=False)
+    prolific_id     = Column(VARCHAR(length=200)) # the date at which the questionnaire has been answered   
     date            = Column(VARCHAR(length=100), nullable=False) # the date at which the questionnaire has been answered   
     datetime        = Column(DATETIME,nullable=False)
     block_number    = Column(Integer, nullable=False) # the questionnaire has parts and each part is stored as a separate row in the table
@@ -26,6 +27,9 @@ class ParticipantsQuestionData(BaseObject, Model):
 
     def get_participant_id(self):
         return str(self.participant_id)
+
+    def get_prolific_id(self):
+        return str(self.prolific_id)
 
     def get_block_number(self):
         return str(self.block_number)

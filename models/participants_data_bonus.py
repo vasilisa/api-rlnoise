@@ -14,7 +14,7 @@ class ParticipantsDataBonus(BaseObject, Model):
     id = Column(Integer, primary_key=True)
 
     participant_id    = Column(BigInteger,nullable=False)
-    prolific_id       = Column(VARCHAR(length=1000), nullable=False)
+    prolific_id       = Column(VARCHAR(length=200))
     date              = Column(VARCHAR(length=100), nullable=False) # the date at which the questionnaire has been answered   
     datetime          = Column(DATETIME,nullable=False)
     bonus             = Column(VARCHAR(length=100), nullable=False)
