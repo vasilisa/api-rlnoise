@@ -14,7 +14,7 @@ class ParticipantsData(BaseObject, Model):
     id = Column(Integer, primary_key=True)
 
     participant_id    = Column(BigInteger, nullable=False)
-    prolific_id       = Column(VARCHAR(length=200)) # could be undefined or null 
+    prolific_id       = Column(VARCHAR(length=200),nullable=True) # could be undefined or null 
     game_id           = Column(Integer, nullable=False) # the date at which the questionnaire has been answered   
     
     date              = Column(VARCHAR(length=100), nullable=False) # the date at which the questionnaire has been answered   
