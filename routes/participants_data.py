@@ -55,16 +55,15 @@ def create_participant(participant_id, block_id, prolific_id):
      return jsonify(result)
 
 # Get the bonus information: 
-@app.route("/participants_data/score/<participant_id>/<game_id>/<prolific_id>", methods=["POST", "GET"])
+@app.route("/participants_data/score/<participant_id>/<game_id>", methods=["GET"])
 
-def get_participant_score(participant_id,game_id,prolific_id):
+def get_participant_score(participant_id,game_id):
 
-    if prolific_id=="undefined": 
-        query      = ParticipantsData.query.filter_by(participant_id=participant_id) 
-    else: 
-        query      = ParticipantsData.query.filter_by(prolific_id=prolific_id) 
+    query      = ParticipantsData.query.filter_by(prolific_id=prolific_id) 
+
+    if query != None:
+        print('Exists')
     
-
     rel_perf   = query.all()    
     rel_perf_blocks = numpy.concatenate([numpy.array(rel_perf[i].get_block_perf()[1:-1].split(',')[-2:], dtype=numpy.float) for i in range(len(rel_perf))])
     
