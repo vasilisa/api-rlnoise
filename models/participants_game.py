@@ -1,5 +1,5 @@
 """User model"""
-from sqlalchemy import Column, Integer, BigInteger, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, BigInteger, ForeignKey, DATETIME, VARCHAR
 
 from models.db import Model
 from models.base_object import BaseObject
@@ -14,8 +14,10 @@ class ParticipantsGame(BaseObject, Model):
     id = Column(Integer, primary_key=True)
 
     participant_id  = Column(BigInteger, nullable=False)
-    game_id         = Column(BigInteger, nullable=False)
-
+    game_id         = Column(Integer, nullable=False)
+    prolific_id     = Column(VARCHAR(length=200))
+    date            = Column(VARCHAR(length=100), nullable=False) # the date at which the questionnaire has been answered   
+    datetime        = Column(DATETIME,nullable=False)
     
     def get_id(self):
         return str(self.id)
