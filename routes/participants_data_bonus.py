@@ -14,7 +14,7 @@ def create_participant_bonus(participant_id,prolific_id):
      participant = ParticipantsDataBonus()
 
      participant.participant_id  = int(participant_id)
-     participant.prolific_id     = str('prolific_id')
+     participant.prolific_id     = str(prolific_id)
      participant.bonus           = str(content['bonus'])
      participant.date            = content['date']
      participant.datetime        = datetime.now() 
