@@ -83,9 +83,9 @@ def get_participant_score(participant_id,game_id,prolific_id):
 
     ratio = meanperf/meanmaxperf
 
-    if ratio < 0.4: 
+    if ratio < 0.5: 
         bonus = 0
-    elif ratio >= 0.6: 
+    elif ratio >= 0.75: 
          bonus = 3.0
     else:
         bonus = 1.5
