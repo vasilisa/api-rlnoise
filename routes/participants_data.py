@@ -44,9 +44,8 @@ def create_participant(participant_id, block_id, prolific_id):
      # "yes" for the last finished block 
      # " aborted" : if the user closes the browser or is idle for more than 10 min on the task, the task window closes itseld 
 
-     participant.date      = content['date']
-     participant.datetime  = datetime.now() 
-     
+     participant.date       = content['date']
+     participant.date_time  = str(content['date_time'])
      
      BaseObject.check_and_save(participant)
 
@@ -81,14 +80,20 @@ def get_participant_score(participant_id,game_id,prolific_id):
     max_perf_blocks = numpy.concatenate([numpy.array(max_perf[i].get_maxreward().split(',')[-1:], dtype=numpy.float) for i in range(len(max_perf))])
     meanmaxperf     = numpy.mean(max_perf_blocks[2:]) # exclude the first 2 training sessions 
 
+
     ratio = meanperf/meanmaxperf
+
+    app.logger.info(meanperf)
+    app.logger.info(meanmaxperf)
+    app.logger.info(ratio)
+    
 
     if ratio < 0.5: 
         bonus = 0
-    elif ratio >= 0.75: 
-         bonus = 3.0
+    elif ratio >= 1.0: 
+         bonus = 2.0
     else:
-        bonus = 1.5
+        bonus = 1.0
     
     result          = {}
     result['bonus'] = str(bonus) 
@@ -124,8 +129,8 @@ def get_participant_data(participant_id,block_id):
     arr_date                   = block.get_date()
     result['date']             = arr_date
 
-    arr_datetime               = block.get_datetime()
-    result['datetime']         = arr_datetime
+    arr_datetime                = block.get_date_time()
+    result['date_time']         = arr_datetime
 
     arr_chosen_symbols         = block.get_chosen_symbols().replace('  ',' ').split(' ') 
     result['chosen_symbols']   = arr_chosen_symbols 

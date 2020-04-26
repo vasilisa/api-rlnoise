@@ -12,15 +12,17 @@ class ParticipantsQuestionData(BaseObject, Model):
     '''
     id = Column(Integer, primary_key=True)
 
-    participant_id  = Column(BigInteger, nullable=False)
-    prolific_id     = Column(VARCHAR(length=200)) # the date at which the questionnaire has been answered   
-    date            = Column(VARCHAR(length=100), nullable=False) # the date at which the questionnaire has been answered   
-    datetime        = Column(DATETIME,nullable=False)
-    block_number    = Column(Integer, nullable=False) # the questionnaire has parts and each part is stored as a separate row in the table
-    block_name      = Column(VARCHAR(length=1000), nullable=False) # the questionnaire has parts and each part is stored as a separate row in the table
-    question_ids    = Column(VARCHAR(length=1000), nullable=False)  # the survey block name /tag for the section 
-    answers         = Column(VARCHAR(length=10000), nullable=False) # an array with the string answers to each of the question items in the questionnaire block    
-    completed       = Column(VARCHAR(length=100), nullable=False) # whether the survey has been completed, uncompleted or "aborted"
+    participant_id          = Column(BigInteger,nullable=False)
+    prolific_id             = Column(VARCHAR(length=200))
+    date                    = Column(VARCHAR(length=100),nullable=False) # the date at which the questionnaire has been answered   
+    date_time_survey_start  = Column(VARCHAR(length=200))
+    date_time_survey_end    = Column(VARCHAR(length=200))
+    date_time               = Column(VARCHAR(length=200)) # date time start of the experiment 
+    block_number            = Column(Integer,nullable=False) # the questionnaire has parts and each part is stored as a separate row in the table
+    block_name              = Column(VARCHAR(length=1000), nullable=False) # the questionnaire has parts and each part is stored as a separate row in the table
+    question_ids            = Column(VARCHAR(length=1000), nullable=False)  # the survey block name /tag for the section 
+    answers                 = Column(VARCHAR(length=10000), nullable=False) # an array with the string answers to each of the question items in the questionnaire block    
+    completed               = Column(VARCHAR(length=100), nullable=False) # whether the survey has been completed, uncompleted or "aborted"
     
     def get_id(self):
         return str(self.id)
@@ -49,8 +51,15 @@ class ParticipantsQuestionData(BaseObject, Model):
     def get_date(self): 
         return str(self.date)
 
-    def get_datetime(self): 
-        return str(self.datetime)
+    def get_date_time_survey_start(self): 
+        return str(self.date_time_survey_start)
+
+    def get_date_time(self): 
+        return str(self.date_time)
+
+    def get_date_time_survey_end(self): 
+        return str(self.date_time_survey_end)
+    
     
     def errors(self):
         errors = super(ParticipantsQuestionData, self).errors()

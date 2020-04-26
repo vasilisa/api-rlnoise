@@ -17,7 +17,7 @@ class ParticipantsGame(BaseObject, Model):
     game_id         = Column(Integer, nullable=False)
     prolific_id     = Column(VARCHAR(length=200))
     date            = Column(VARCHAR(length=100), nullable=False) # the date at which the questionnaire has been answered   
-    datetime        = Column(DATETIME,nullable=False)
+    date_time       = Column(VARCHAR(length=200)) # date time start of the experiment 
     
     def get_id(self):
         return str(self.id)
@@ -27,6 +27,10 @@ class ParticipantsGame(BaseObject, Model):
 
     def get_game_id(self):
         return str(self.game_id)
+
+    def get_date_time(self): 
+        return str(self.date_time)
+
 
     def errors(self):
         errors = super(ParticipantsGame, self).errors()

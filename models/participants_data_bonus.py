@@ -14,9 +14,9 @@ class ParticipantsDataBonus(BaseObject, Model):
     id = Column(Integer, primary_key=True)
 
     participant_id    = Column(BigInteger,nullable=False)
-    prolific_id       = Column(VARCHAR(length=200))
+    prolific_id       = Column(VARCHAR(length=200), nullable=False)
     date              = Column(VARCHAR(length=100), nullable=False) # the date at which the questionnaire has been answered   
-    datetime          = Column(DATETIME,nullable=False)
+    date_time         = Column(VARCHAR(length=200)) # date time start of the experiment 
     bonus             = Column(VARCHAR(length=100), nullable=False)
     
      # uncompleted if this is not the last block or "aborted" if the user closes the browser or hits the return button?   
@@ -32,6 +32,10 @@ class ParticipantsDataBonus(BaseObject, Model):
 
     def get_bonus(self): 
         return str(self.bonus)
+
+    def get_date_time(self): 
+        return str(self.date_time)
+
 
     def errors(self):
         errors = super(ParticipantsDataBonus, self).errors()

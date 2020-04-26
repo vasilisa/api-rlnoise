@@ -19,9 +19,8 @@ def generate_game_id(participant_id,prolific_id,date):
 	participant.prolific_id     = str(prolific_id)
 	participant.game_id         = int(game_id)
 	participant.date            = date
-	participant.datetime        = datetime.now()
-
-
+	participant.date_time      = str(datetime.now())
+	 
 	BaseObject.check_and_save(participant)
 
     

@@ -14,11 +14,13 @@ class ParticipantsData(BaseObject, Model):
     id = Column(Integer, primary_key=True)
 
     participant_id    = Column(BigInteger, nullable=False)
-    prolific_id       = Column(VARCHAR(length=200),nullable=True) # could be undefined or null 
+    prolific_id       = Column(VARCHAR(length=200))
+
     game_id           = Column(Integer, nullable=False) # the date at which the questionnaire has been answered   
     
     date              = Column(VARCHAR(length=100), nullable=False) # the date at which the questionnaire has been answered   
-    datetime          = Column(DATETIME,nullable=False)
+    date_time         = Column(VARCHAR(length=200)) # date time start of the experiment 
+    
     
     block_number      = Column(BigInteger, nullable=False)
     chosen_symbols    = Column(Text(length=10000), nullable=False)     
@@ -41,7 +43,6 @@ class ParticipantsData(BaseObject, Model):
 
     def get_prolific_id(self):
         return str(self.prolific_id)
-
 
     def get_game_id(self):
         return str(self.game_id)
@@ -68,8 +69,8 @@ class ParticipantsData(BaseObject, Model):
     def get_date(self): 
         return str(self.date)
     
-    def get_datetime(self): 
-        return str(self.datetime)
+    def get_date_time(self): 
+        return str(self.date_time)
 
     def get_block_perf(self): 
         return str(self.block_perf)

@@ -17,8 +17,8 @@ def create_participant_bonus(participant_id,prolific_id):
      participant.prolific_id     = str(prolific_id)
      participant.bonus           = str(content['bonus'])
      participant.date            = content['date']
-     participant.datetime        = datetime.now() 
-     
+     participant.date_time       = str(datetime.now())
+
      BaseObject.check_and_save(participant)
 
      result = dict({"success": "yes"})    
