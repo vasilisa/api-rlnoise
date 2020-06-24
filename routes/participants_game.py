@@ -13,13 +13,13 @@ import json
 def generate_game_id(participant_id,prolific_id,date):
 	
 	participant = ParticipantsGame()
-	game_id     = numpy.random.randint(1,100,1)[0]
+	game_id     = numpy.random.randint(1,200,1)[0] # select among 200 available games 
 
 	participant.participant_id  = int(participant_id)
 	participant.prolific_id     = str(prolific_id)
 	participant.game_id         = int(game_id)
 	participant.date            = date
-	participant.date_time      = str(datetime.now())
+	participant.date_time       = str(datetime.now())
 	 
 	BaseObject.check_and_save(participant)
 
